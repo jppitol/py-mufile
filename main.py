@@ -16,8 +16,8 @@ def get_artista(caminho_arquivo):
     try:
         tags = EasyID3(caminho_arquivo)
         artista = tags["artist"][0]
-        if '/' in artista:
-            artista = artista.split('/')
+        if "/" in artista:
+            artista = artista.split("/")
             return artista[0]
         return artista
     except Exception:
@@ -56,7 +56,15 @@ def pack(pasta_principal):
         artista = get_artista(caminho_musica1)
         if not os.path.exists(os.path.join(pasta_principal, artista)):
             os.makedirs(os.path.join(pasta_principal, artista))
-        shutil.move(os.path.join(pasta_principal, album), os.path.join(pasta_principal, artista))
+        shutil.move(
+            os.path.join(pasta_principal, album), os.path.join(pasta_principal, artista)
+        )
+
+    if os.path.exists(os.path.join(pasta_principal, "Unknown Artist")) and not len(
+        os.listdir(os.path.join(pasta_principal, "Unknown Artist"))
+    ):
+        shutil.rmtree(os.path.join(pasta_principal, "Unknown Artist"))
+
 
 def unpack():
     ...

@@ -1,4 +1,4 @@
-# Music Organizer
+# Python MuFile
 
 A simple tool to help you organize your music library.
 
